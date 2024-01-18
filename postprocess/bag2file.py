@@ -1,0 +1,93 @@
+##################################################
+###  Translate and dissect data from bag file  ###
+##################################################
+# Launch World with
+# roslaunch nps_uw_multibeam_sonar sonar_tank_oculus_m1200d_nps_multibeam.launch
+
+# Record bag file with
+# rosbag record -O ~/Downloads/data/Record.bag -l 1 /oculus_m1200d/sonar_image_raw && python3 bag2file.py
+
+# Read bag file and obtain sonar_image and save
+#------------------------------------------------#
+import rosbag, os, shutil, glob
+
+# Define target msg type
+targetMsgType = 'marine_acoustic_msgs/ProjectedSonarImage'
+
+# Obtain bag file lists
+bagList = glob.glob('./*.bag')
+
+# Loop through all bag files in the currentdirectory
+for fileI in range(len(bagList)):
+  # Obtain filename without extension
+  filename = os.path.splitext(bagList[fileI])[0]
+  print('Translating ' + filename + '... (' + repr(fileI+1) + '/' + repr(len(bagList)) + ')')
+
+  # Read bag file
+  bag = rosbag.Bag('./' + filename + '.bag')
+  topic = '/oculus_m1200d/sonar_image_raw'
+  # # Obtain topic list
+  # topics = bag.get_type_and_topic_info()[1].keys()
+  # # Search topic with target msg type
+  # for i in range(0,len(bag.get_type_and_topic_info()[1].values())):
+  #   if bag.get_type_and_topic_info()[1].values()[i][0] == targetMsgType:
+  #     topic = bag.get_type_and_topic_info()[1].keys()[i]
+
+  # Make a folder with the filename
+  if not os.path.exists(filename):
+    os.makedirs(filename)
+  else:
+    shutil.rmtree(filename)
+
+  # Read bag data and save
+  counter = 0
+  for topic, msg, t in bag.read_messages(topics=topic):
+    # make folder for each sequence starting from 1
+    counter = counter + 1
+    if not os.path.exists(filename + '/' + repr(counter)):
+      os.makedirs(filename + '/' + repr(counter))
+    # write sequence number
+    # f = open(filename + '/' + repr(counter) + '/sequence', 'w')
+    # f.write(repr(msg.header.seq)); f.close()
+    # # write time
+    # f = open(filename + '/' + repr(counter) + '/time', 'w')
+    # f.write(repr(msg.header.stamp.secs)); f.close()
+    # write frequency
+    f = open(filename + '/' + repr(counter) + '/frequency', 'w')
+    f.write(repr(msg.ping_info.frequency)); f.close()
+    # write sound_speed
+    f = open(filename + '/' + repr(counter) + '/sound_speed', 'w')
+    f.write(filename + '/' + repr(msg.ping_info.sound_speed)); f.close()
+    # # write azimuth_beamwidth
+    # f = open(filename + '/' + repr(counter) + '/azimuth_beamwidth', 'w')
+    # f.write(repr(msg.ping_info.tx_beamwidth)); f.close()
+    # # write elevation_beamwidth
+    # f = open(filename + '/' + repr(counter) + '/elevation_beamwidth', 'w')
+    # f.write(repr(msg.ping_info.rx_beamwidth)); f.close()
+    # # write azimuth_angles
+    # f = open(filename + '/' + repr(counter) + '/azimuth_angles', 'w')
+    # for data in msg.azimuth_angles:
+    #   f.write(repr(data) + '\n')
+    # f.close()
+    # # write elevation_angles
+    # f = open(filename + '/' + repr(counter) + '/elevation_angles', 'w')
+    # for data in msg.elevation_angles:
+    #   f.write(repr(data) + '\n')
+    # f.close()
+    # write ranges
+    f = open(filename + '/' + repr(counter) + '/ranges', 'w')
+    for data in msg.ranges:
+      f.write(repr(data) + '\n')
+    f.close()
+    # # write is_bigendian
+    # f = open(filename + '/' + repr(counter) + '/is_bigendian', 'w')
+    # f.write(repr(msg.is_bigendian)); f.close()
+    # # write data_size
+    # f = open(filename + '/' + repr(counter) + '/data_size', 'w')
+    # f.write(repr(msg.data_size)); f.close()
+    # write intensities
+    f = open(filename + '/' + repr(counter) + '/intensities', 'w')
+    for data in msg.image.data:
+      # f.write(repr(ord(data)) + '\n')
+      f.write(repr(data) + '\n')
+    f.close()
