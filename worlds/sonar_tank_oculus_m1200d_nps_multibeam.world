@@ -18,7 +18,7 @@
     <include>
       <uri>model://cylinder_sonar_tank</uri>
       <name>cylinder_sonar_tank</name>
-      <pose>0 0 0 0 0 0</pose>
+      <pose>-0.5 0 0 0 0 0</pose>
       <static>true</static>
     </include>
 
@@ -34,7 +34,7 @@
     <include>
       <uri>model://rod_target</uri>
       <name>rod_target</name>
-      <pose>-0.525 0 0.6 0 1.5709 0</pose>
+      <pose>-0.0889 0 0.6 0 1.5709 0</pose>
       <static>true</static>
     </include>
 

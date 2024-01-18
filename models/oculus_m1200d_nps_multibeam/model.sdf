@@ -63,7 +63,7 @@
           <bandwidth>265.5e3</bandwidth>
           <soundSpeed>1500</soundSpeed>
           <sourceLevel>150</sourceLevel>
-          <maxDistance>1.2</maxDistance>
+          <maxDistance>2.0</maxDistance>
           <constantReflectivity>true</constantReflectivity>
           <!-- custom SDF Tag works when constantReflectivity is false -->
           <customSDFTagReflectivity>false</customSDFTagReflectivity>
@@ -75,7 +75,7 @@
           <raySkips>0</raySkips>
           <sensorGain>1</sensorGain>
           <plotScaler>0</plotScaler>
-          <writeLog>false</writeLog>
+          <writeLog>true</writeLog>
           <debugFlag>true</debugFlag>
           <writeFrameInterval>5</writeFrameInterval>
           <artificialVehicleVibration>true</artificialVehicleVibration>
