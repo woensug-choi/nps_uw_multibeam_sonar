@@ -552,7 +552,7 @@ void NpsGazeboRosMultibeamSonarRay::ComputeSonarImage()
   acoustic_msgs::SonarImageData sonar_image_data;
   sonar_image_data.is_bigendian = false;
   sonar_image_data.dtype = 0; //DTYPE_UINT8
-  sonar_image_data.beam_count = nBeams;
+  sonar_image_data.num_beams = nBeams;
   //this->sonar_image_raw_msg_.data_size = 1;  // sizeof(float) * nFreq * nBeams;
   std::vector<uchar> intensities;
   int Intensity[nBeams][nFreq];
