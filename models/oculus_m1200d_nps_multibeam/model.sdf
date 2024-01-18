@@ -3,7 +3,7 @@
   <model name="oculus_m1200d">
     <link name="forward_sonar_link">
       <inertial>
-        <pose>0 0 0 0 0 0</pose>
+        <pose>0 0 0 3.14159265359 0 0</pose>
         <mass>4.35</mass>
         <inertia>
           <ixx>0.0360</ixx>          <!-- 1/12ml^2 -->
@@ -15,7 +15,7 @@
         </inertia>
       </inertial>
       <collision name="collision">
-        <pose>0 0 0 0 0 1.57079632679</pose>
+        <pose>0 0 0 3.14159265359 0 -1.57079632679</pose>
         <geometry>
           <mesh>
             <uri>model://oculus_m1200d_nps_multibeam/meshes/COLLISION-Oculus-M-series.dae</uri>
@@ -23,7 +23,7 @@
         </geometry>
       </collision>
       <visual name="visual">
-        <pose>0 0 0 0 0 1.57079632679</pose>
+        <pose>0 0 0 3.14159265359 0 -1.57079632679</pose>
         <geometry>
           <mesh>
             <uri>model://oculus_m1200d_nps_multibeam/meshes/Oculus-M-series.dae</uri>
@@ -39,10 +39,10 @@
           <!-- 60 degrees for the oculus-m1200d at 2.1MHz mode -->
           <horizontal_fov>1.0471975512</horizontal_fov>
           <image>
-            <width>256</width>
+            <width>512</width>
             <!-- Set vertical FOV by setting image height -->
             <!-- Approx 2 times the spec sheet (sepc: 12 deg.) -->
-            <height>102</height>
+            <height>205</height>
             <format>R8G8B8</format>
           </image>
           <clip>
@@ -62,21 +62,21 @@
           <sonarFreq>2100e3</sonarFreq>
           <bandwidth>265.5e3</bandwidth>
           <soundSpeed>1500</soundSpeed>
-          <sourceLevel>150</sourceLevel>
-          <maxDistance>1.2</maxDistance>
+          <sourceLevel>152</sourceLevel>
+          <maxDistance>2.0</maxDistance>
           <constantReflectivity>false</constantReflectivity>
           <!-- custom SDF Tag works when constantReflectivity is false -->
-          <customSDFTagReflectivity>true</customSDFTagReflectivity>
+          <customSDFTagReflectivity>false</customSDFTagReflectivity>
           <!-- The CSV databsefile is located at the worlds folder -->
           <customSDFTagDatabaseFile>customSDFTagDatabase.csv</customSDFTagDatabaseFile>
           <!-- reflectivity database (by model name) works -->
           <!-- when both constantReflectivity and customSDFTagReflectivity are false -->
           <reflectivityDatabaseFile>variationalReflectivityDatabase.csv</reflectivityDatabaseFile>
-          <raySkips>0</raySkips>
+          <raySkips>10</raySkips>
           <sensorGain>1</sensorGain>
           <plotScaler>0</plotScaler>
           <writeLog>false</writeLog>
-          <debugFlag>false</debugFlag>
+          <debugFlag>true</debugFlag>
           <writeFrameInterval>5</writeFrameInterval>
           <!-- This name is prepended to ROS topics -->
           <cameraName>oculus_m1200d</cameraName>
