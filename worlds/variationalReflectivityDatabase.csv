@@ -4,3 +4,5 @@ Data start from 4th line. Information about this data can be written here (in on
 basement_tank_model,0.0001
 cylinder_target1,0.005
 cylinder_target2,0.001
+cylinder_sonar_tank,0.01
+rod_target,0.00001

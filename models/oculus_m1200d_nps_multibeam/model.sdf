@@ -62,7 +62,7 @@
           <sonarFreq>2100e3</sonarFreq>
           <bandwidth>265.5e3</bandwidth>
           <soundSpeed>1500</soundSpeed>
-          <sourceLevel>152</sourceLevel>
+          <sourceLevel>220</sourceLevel>
           <maxDistance>2.0</maxDistance>
           <constantReflectivity>false</constantReflectivity>
           <!-- custom SDF Tag works when constantReflectivity is false -->
@@ -71,9 +71,9 @@
           <customSDFTagDatabaseFile>customSDFTagDatabase.csv</customSDFTagDatabaseFile>
           <!-- reflectivity database (by model name) works -->
           <!-- when both constantReflectivity and customSDFTagReflectivity are false -->
-          <reflectivityDatabaseFile>variationalReflectivityDatabase.csv</reflectivityDatabaseFile>
-          <raySkips>10</raySkips>
-          <sensorGain>1</sensorGain>
+          <reflectivityDatabaseFile>variationalReflectivityDatabase_APL.csv</reflectivityDatabaseFile>
+          <raySkips>50</raySkips>
+          <sensorGain>0.02</sensorGain>
           <plotScaler>0</plotScaler>
           <writeLog>false</writeLog>
           <debugFlag>true</debugFlag>

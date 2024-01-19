@@ -814,6 +814,8 @@ void NpsGazeboRosMultibeamSonar::ComputeSonarImage(const float *_src)
   if (this->reflectivityImage.rows == 0)
     this->reflectivityImage = cv::Mat(width, height, CV_32FC1, cv::Scalar(this->mu));
 
+  ROS_INFO_STREAM(this->reflectivityImage.rows);
+
   // If artifical vehicle vibration flag is on
   if (this->artificialVehicleVibration)
   {
